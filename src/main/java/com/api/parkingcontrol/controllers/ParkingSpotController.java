@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -36,6 +37,11 @@ public class ParkingSpotController {
         BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel); //conversao de dto para model passando o que vai ser convertido, noque vai ser convertido
         parkingSpotModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.save(parkingSpotModel));
+    }
+
+    @GetMapping //getAll
+    public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots() {
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
     }
 
 }
