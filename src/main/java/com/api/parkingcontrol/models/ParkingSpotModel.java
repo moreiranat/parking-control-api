@@ -49,8 +49,8 @@ public class ParkingSpotModel implements Serializable {
         this.parkingSpotNumber = parkingSpotNumber;
     }
 
-    public String getLicensePlateCar() {
-        return licensePlateCar;
+    public String getLicensePlateCar(String licensePlateCar) {
+        return this.licensePlateCar;
     }
 
     public void setLicensePlateCar(String licensePlateCar) {
