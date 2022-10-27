@@ -4,7 +4,6 @@ import com.api.parkingcontrol.dtos.ParkingSpotDto;
 import com.api.parkingcontrol.models.ParkingSpotModel;
 import com.api.parkingcontrol.services.ParkingSpotService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,8 +23,11 @@ import java.util.UUID;
 @RequestMapping("/parking-spot")
 public class ParkingSpotController {
 
-    @Autowired
-    ParkingSpotService parkingSpotService;
+    final ParkingSpotService parkingSpotService;
+
+    public ParkingSpotController(ParkingSpotService parkingSpotService) {
+        this.parkingSpotService = parkingSpotService;
+    }
 
     @PostMapping
     public ResponseEntity<Object> saveParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto){
